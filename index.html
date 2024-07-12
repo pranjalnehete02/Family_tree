@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Tree</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4d03f;
+        background-image: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
+      }
+      .tree-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 20px;
+      }
+      .tree {
+        display: inline-block;
+        white-space: normal;
+      }
+      .tree ul {
+        padding-top: 20px;
+        position: relative;
+        transition: all 0.5s;
+        display: table;
+        margin: 0 auto;
+      }
+
+      .tree li {
+        display: table-cell;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 5px 0 5px;
+        transition: all 0.5s;
+      }
+
+      .tree li::before,
+      .tree li::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-top: 2px solid rgb(0, 0, 0);
+        width: 50%;
+        height: 20px;
+      }
+
+      .tree li::after {
+        right: auto;
+        left: 50%;
+        border-left: 2px solid rgb(0, 0, 0);
+      }
+
+      .tree li:only-child::after,
+      .tree li:only-child::before {
+        display: none;
+      }
+
+      .tree li:only-child {
+        padding-top: 0;
+      }
+
+      .tree li:first-child::before,
+      .tree li:last-child::after {
+        border: 0 none;
+      }
+
+      .tree li:last-child::before {
+        border-right: 2px solid rgb(0, 0, 0);
+        border-radius: 0 5px 0 0;
+      }
+
+      .tree li:first-child::after {
+        border-radius: 5px 0 0 0;
+      }
+
+      .tree ul ul::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 2px solid rgb(0, 0, 0);
+        width: 0;
+        height: 20px;
+      }
+
+      .tree li a {
+        border: 2px solid rgb(3, 2, 2);
+        padding: 5px 10px;
+        text-decoration: none;
+        color: rgb(4, 4, 4);
+        font-family: arial, verdana, tahoma;
+        font-size: 14px;
+        display: inline-block;
+        border-radius: 5px;
+        transition: all 0.5s;
+      }
+
+      .tree li a:hover,
+      .tree li a:hover + ul li a {
+        background: #ffffff;
+        color: #000;
+        border: 2px solid #94a0b4;
+      }
+
+      .tree li a:hover + ul li::after,
+      .tree li a:hover + ul li::before,
+      .tree li a:hover + ul::before,
+      .tree li a:hover + ul ul::before {
+        border-color: #000000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tree-container">
+      <div class="tree">
+        <ul id="tree-root"></ul>
+      </div>
+    </div>
+
+    <script>
+      const familyTree = {
+        name: "Bapu - Shaku",
+        children: [
+          {
+            name: "Kachru - Navsabai",
+            children: [
+              {
+                name: "Vavadhan - Varabai",
+                children: [
+                  {
+                    name: "Vishvnath - Rambha",
+                    children: [
+                      {
+                        name: "Chhabildas - Asmita(Anju)",
+                        children: [
+                          {
+                            name: "Abhijit - Shwetal",
+                            children: [
+                              {
+                                name: "Ayesha",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Prajakta - Vijay Bedekar",
+                            children: [
+                              {
+                                name: "Rohit",
+                              },
+                              {
+                                name: "Puja",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Ashwini - Pralhad Indorikar",
+                            children: [
+                              {
+                                name: "Prathamesh",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        name: "Padmakar - Madhuri(Damyanti)",
+                        children: [
+                          {
+                            name: "Rupesh - Rashmi",
+                          },
+                          {
+                            name: "Rani",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Dhanraj - Bharati",
+                        children: [
+                          {
+                            name: "Chinmay",
+                          },
+                          {
+                            name: "Shardha",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Kusum - Bhalchand Badhe",
+                        children: [
+                          {
+                            name: "Sanjay",
+                          },
+                          {
+                            name: "Vijay",
+                          },
+                          {
+                            name: "Varsha",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Shailaja - Ravindra Zambre",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Vatsala - Sopan Patil",
+                    children: [
+                      {
+                        name: "Arvind - Kumud",
+                      },
+                      {
+                        name: "Hulchand - Shobha",
+                      },
+                      {
+                        name: "Suman - Dnyanadev Sarode",
+                        children: [
+                          {
+                            name: "Nitin",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Kusum - Ravindra Bhole",
+                      },
+                      {
+                        name: "Viju - Saroj",
+                        children: [
+                          {
+                            name: "Ojas",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Liladhar - Mangla",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Pandharinath - Laxmi",
+                    children: [
+                      {
+                        name: "Yashvant - Jayashree",
+                        children: [
+                          {
+                            name: "Monty",
+                          },
+                          {
+                            name: "Chanchal",
+                          },
+                          {
+                            name: "Rina(Nashik)",
+                          },
+                          {
+                            name: "Tina",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Devidas - Madhuri",
+                        children: [
+                          {
+                            name: "Palak - Vinod Rane",
+                            children: [
+                              {
+                                name: "Janvhi",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Pratik - Vaishnavi",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Vijaya - kashinath Narkhede",
+                        children: [
+                          {
+                            name: "Tushar",
+                          },
+                          {
+                            name: "Manda",
+                            children: [
+                              {
+                                name: "Puja - Kale",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Mina",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Bebi - Narayan Bhangale",
+                        children: [
+                          {
+                            name: "Nilima - Sarode",
+                          },
+                          {
+                            name: "Gundi(Jyotsna) - Zope",
+                          },
+                          {
+                            name: "Nitin",
+                          },
+                          {
+                            name: "Prashant",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Nirmla - Arun Khachane",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Yadav - Vastla",
+                    children: [
+                      {
+                        name: "Alka - Khushal Garse",
+                      },
+                      {
+                        name: "Murli - Chhaya",
+                        children: [
+                          {
+                            name: "Purshottam(Bhaiya) - Mayuri",
+                          },
+                          {
+                            name: "Rani - Ritesh Sarode",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Sulbha - Ramesh Chaudhary",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Laxman - Shakuntala",
+                    children: [
+                      {
+                        name: "Rajani - Ashok Patil",
+                        children: [
+                          {
+                            name: "Soni - Jivan Patil",
+                          },
+                          {
+                            name: "Kavita - Ratnakar Patil",
+                          },
+                          {
+                            name: "Tushar - Priti",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Mangala - Bhojraj Bhangale",
+                        children: [
+                          {
+                            name: "Urmila(Babali) - Rupesh",
+                          },
+                          {
+                            name: "Parag",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Jyoti - Hemchandra Bharambe",
+                        children: [
+                          {
+                            name: "Bhavana",
+                          },
+                          {
+                            name: "Vrushali - Prashant Yevle",
+                          },
+                          {
+                            name: "Rani - Sachin Chaudhari",
+                          },
+                          {
+                            name: "Dipali - Pushkar Narkhede",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Namdeo - Seema",
+                        children: [
+                          {
+                            name: "Priyanka - Shirkant Patil",
+                          },
+                          {
+                            name: "Bhushan - Sakshi",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Gopal - Rupali",
+                        children: [
+                          {
+                            name: "Yadnyesh",
+                          },
+                          {
+                            name: "Pranjal",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "kashinath - Shashikala",
+                    children: [
+                      {
+                        name: "Kundan - Jayshree",
+                        children: [
+                          {
+                            name: "Radha",
+                          },
+                          {
+                            name: "Gauri",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Amol - Hemangi",
+                        children: [
+                          {
+                            name: "Atharv",
+                          },
+                          {
+                            name: "Aayush",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Shubhangi - Rajendra Jawale",
+                        children: [
+                          {
+                            name: "Suchita",
+                          },
+                          {
+                            name: "Aaditya",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Dvarka - Vsant Patil",
+                    children: [
+                      {
+                        name: "Nalu - S.V.Patil",
+                      },
+                      {
+                        name: "Kalpana - Lalit Chaudhary",
+                      },
+                      {
+                        name: "Madhuri - Rajendra Wani",
+                      },
+                      {
+                        name: "Shobha - Pramod Rane",
+                      },
+                      {
+                        name: "Liladhar - Palavi",
+                        children: [
+                          {
+                            name: "Chandan",
+                          },
+                          {
+                            name: "Nikita",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "Sadashiv - Sarsvati",
+                children: [
+                  {
+                    name: "Bhagavat - Pramila",
+                    children: [
+                      {
+                        name: "Krushna - Lata",
+                        children: [
+                          {
+                            name: "Harsh - Snehal",
+                            children: [
+                              {
+                                name: "Kush",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Smita(Guddi) - Sanjay Zope",
+                            children: [
+                              {
+                                name: "Ganesh",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        name: "Shashikala - Ashok Mahajan",
+                        children: [
+                          {
+                            name: "Bhaiya(Mukesh)",
+                          },
+                          {
+                            name: "Dhanshree",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Shobha - Narendra Patil",
+                        children: [
+                          {
+                            name: "Parag - Bhagyashri",
+                          },
+                          {
+                            name: "Minal - (__)",
+                          },
+                          {
+                            name: "Rani(Shrayu) - Dipak Talele",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Hirkani - Dilip Nemade",
+                        children: [
+                          {
+                            name: "Tina",
+                          },
+                          {
+                            name: "Twinkle",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Purshottam - Usha",
+                    children: [
+                      {
+                        name: "Nitin - Yogita",
+                        children: [
+                          {
+                            name: "Janvhi",
+                          },
+                          {
+                            name: "Saras",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Chanda - Kishor Javle",
+                        children: [
+                          {
+                            name: "Paresh",
+                          },
+                          {
+                            name: "Mayur",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Ruplai - Hemant Chaudhari",
+                        children: [
+                          {
+                            name: "Rudra",
+                          },
+                          {
+                            name: "Dnyanda",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Janabai - Vaman Nemade",
+                    children: [
+                      {
+                        name: "Ramesh - Surekha",
+                      },
+                      {
+                        name: "Balu",
+                      },
+                      {
+                        name: "Ramchandr - Shobha",
+                      },
+                      {
+                        name: "Bharati",
+                      },
+                      {
+                        name: "Lata",
+                      },
+                      {
+                        name: "Sudha",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Janabai - Vaman Nemade",
+                    children: [
+                      {
+                        name: "Moti - Damaynti",
+                      },
+                      {
+                        name: "Ganesh",
+                      },
+                      {
+                        name: "Shaila - Laxman",
+                      },
+                      {
+                        name: "Pramod - Nita",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "Putalabai - Ramchandra",
+                children: [
+                  {
+                    name: "Padma - Waghulde",
+                  },
+                  {
+                    name: "Rahubai - Devidas Falak",
+                    children: [
+                      {
+                        name: "Mahesh",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Gita - Pundalik Narkhede",
+                  },
+                ],
+              },
+              {
+                name: "Dayaram - Bhimabai",
+                children: [
+                  {
+                    name: "Baliram - Radha",
+                    children: [
+                      {
+                        name: "Vasant - Chhaya",
+                        children: [
+                          {
+                            name: "Pushpak - Nikita",
+                            children: [
+                              {
+                                name: "(__)",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Vidya - Sagar",
+                            children: [
+                              {
+                                name: "Harsh",
+                              },
+                            ],
+                          },
+                          {
+                            name: "Vina - Devendra Patil",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Dulichand - Vaishali",
+                        children: [
+                          {
+                            name: "Prathmesh",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Ratna - Chandrakant Patil",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Pundalik - Sushila",
+                    children: [
+                      {
+                        name: "Ketan - Kavita",
+                        children: [
+                          {
+                            name: "(___)",
+                          },
+                          {
+                            name: "Tushar",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Chanda - Lalit Mahajan",
+                        children: [
+                          {
+                            name: "Jaitra",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Rahubai - Gunaji Fegde",
+                    children: [
+                      {
+                        name: "Suresh",
+                      },
+                      {
+                        name: "Lata",
+                      },
+                      {
+                        name: "Dilip",
+                      },
+                      {
+                        name: "Sulbha",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Chameli",
+                    children: [
+                      {
+                        name: "Hari",
+                      },
+                      {
+                        name: "Ramesh",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Kamal - Chudaman Khachne",
+                    children: [
+                      {
+                        name: "Kiran - Manisha",
+                      },
+                      {
+                        name: "Nitin",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "Tulsabai - Digambar Patil",
+                children: [
+                  {
+                    name: "Rohidas - Mira",
+                  },
+                  {
+                    name: "Bhojraj - Kamal",
+                  },
+                  {
+                    name: "Tukaram - Manorama",
+                  },
+                  {
+                    name: "Ashok - Aasha",
+                  },
+                ],
+              },
+              {
+                name: "Devram - Gangubai",
+                children: [
+                  {
+                    name: "Liladhar - Vijaya",
+                    children: [
+                      {
+                        name: "Vilas - Aarati",
+                        children: [
+                          {
+                            name: "Ameya",
+                          },
+                          {
+                            name: "Avishka",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Vaishali - Rajendra Sarode",
+                        children: [
+                          {
+                            name: "Sudarshan",
+                          },
+                          {
+                            name: "Apurva",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Sonali - Jivan Falak",
+                        children: [
+                          {
+                            name: "Yogini",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Dnyandeo - Nalu",
+                    children: [
+                      {
+                        name: "Paritosh(Sonu) - Priyanka",
+                        children: [
+                          {
+                            name: "Anika",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Manohar - Swati",
+                    children: [
+                      {
+                        name: "Ritesh - Bhumika",
+                        children: [
+                          {
+                            name: "Tanish",
+                          },
+                          {
+                            name: "Ovi",
+                          },
+                        ],
+                      },
+                      {
+                        name: "Sandip - Kalyani",
+                        children: [
+                          {
+                            name: "Anay",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: "Usha - Trambak Chaudhary",
+                    children: [
+                      {
+                        name: "Harsha - Rajendra Firke",
+                      },
+                      {
+                        name: "Guddi(Vrushali)",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: "Lahu",
+          },
+        ],
+      };
+
+      function createTree(node) {
+        if (!node) return "";
+
+        let html = `<li><a href="#">${node.name}</a>`;
+
+        if (node.children && node.children.length > 0) {
+          html += "<ul>";
+          node.children.forEach((child) => {
+            html += createTree(child);
+          });
+          html += "</ul>";
+        }
+
+        html += "</li>";
+        return html;
+      }
+
+      document.getElementById("tree-root").innerHTML = createTree(familyTree);
+    </script>
+  </body>
+</html>
